@@ -61,7 +61,7 @@ if LPH_OBFUSCATED == nil then
     end
     LRM_IsUserPremium = false
     LRM_LinkedDiscordID = "0"
-    LRM_ScriptName = "Bypassin"
+ = "Viper.cc"
     LRM_TotalExecutions = 0
     LRM_SecondsLeft = math.huge
     LRM_UserNote = "Developer";
@@ -4350,6 +4350,57 @@ local window = Library:Window({Prefix = "Bypass", Suffix = "in"})
 
 if Game_Name == "The Bronx" then
     local LocalPlayerTab = window:Tab({name = "Main"})
+   
+   local UtilityTab = window:Tab({
+                name = "Utility",
+                            icon = GetImage("Wrench.png")
+   })
+
+           local UtilityColumn = UtilityTab
+
+                   local GeneralUtils = UtilityColumn:Section({name = "General", side = "Left"})
+
+                           GeneralUtils:Button({
+                                        name = "Rejoin Server",
+                                                    callback = function()
+                                                                    game:GetService("TeleportService"):Teleport(game.PlaceId, game.Players.LocalPlayer)
+                                                                                end
+                           })
+
+                                   GeneralUtils:Button({
+                                                name = "Server Hop",
+                                                            callback = function()
+                                                                            local Http = game:GetService("HttpService")
+                                                                                            local TPS = game:GetService("TeleportService")
+                                                                                                            local Api = "https://games.roblox.com/v1/games/"..game.PlaceId.."/servers/Public?sortOrder=Desc&limit=100"
+                                                                                                                            local _Result = Http:JSONDecode(game:HttpGet(Api))
+                                                                                                                                            for _, v in pairs(_Result.data) do
+   local InterfaceUtils = UtilityTab:Section({name = "Interface", side = "Right"})
+   
+           InterfaceUtils:Button({
+                        name = "Unload Viper.cc",
+                                    callback = function()
+                                                    library:Unload()
+                                                                end
+           })
+           
+ InterfaceUtils:Keybind({
+                name = "Menu Bind",
+    default = Enum.KeyCode.RightControl,
+                callback = function(key)
+                                library.open_key = key
+                                            end
+ })
+   
+   end
+   
+   
+   
+   
+   
+   
+   
+   
     local MiscTab = window:Tab({name = "Money", icon = GetImage("Cash.png")})
     local uhhiTab1 = window:Tab({name = "Miscellaneous", icon = GetImage("Wrench.png")})
 	local executor = identifyexecutor and identifyexecutor() or "Unknown"
@@ -5003,27 +5054,9 @@ if Game_Name == "The Bronx" then
 
         local FarmingSection = Column:Section({name = "Farming", size = 0.415, default = false, side = 'left', icon = GetImage("Wheatt.png")})
 
-        FarmingSection:Toggle({type = "toggle", name = "Auto Farm Construction", flag = "FarmConstruction_TheBronx", default = false, callback = function(state)
-            Config.TheBronx.Farms.FarmConstructionJob = state
-        end})
+    
+        
 
-        FarmingSection:Toggle({type = "toggle", name = "Auto Farm Bank", flag = "FarmBank_TheBronx", default = false, callback = function(state)
-            Config.TheBronx.Farms.FarmBank = state
-        end})
-
-        FarmingSection:Toggle({type = "toggle", name = "Auto Farm House", flag = "FarmHouses_TheBronx", default = false, callback = function(state)
-            Config.TheBronx.Farms.FarmHouses = state
-        end})
-
-        FarmingSection:Toggle({type = "toggle", name = "Auto Farm Studio", flag = "FarmStudio_TheBronx", default = false, callback = function(state)
-            Config.TheBronx.Farms.FarmStudio = state
-        end})
-
-        FarmingSection:Toggle({type = "toggle", name = "Auto Farm Dumpsters", flag = "FarmDumpsters_TheBronx", default = false, callback = function(state)
-            Config.TheBronx.Farms.FarmTrash = state
-        end})
-
-        local ManualFarmSections = Column:Section({name = "Manual Farms", size = 0.325, default = false, side = 'left', icon = GetImage("Pickkaxe.png")}) 
 
         ManualFarmSections:Toggle({type = "toggle", name = "Auto Collect Dropped Cash", flag = "FarmDroppedMoney_TheBronx", default = false, callback = function(state)
             Config.TheBronx.Farms.CollectDroppedMoney = state
@@ -5206,18 +5239,8 @@ if Game_Name == "The Bronx" then
             end
         })
     end
-
-        local FarmSettingsSection = Column:Section({name = "Farming Settings", size = 0.225, default = false, side = 'right', Icon = GetImage("Settings.png")}) 
-
-        FarmSettingsSection:Toggle({type = "toggle", name = "AFK Safety Teleport", flag = "AFKCheck_TheBronx", default = false, callback = function(state)
-            Config.TheBronx.Farms.AFKCheck = state
-        end})
-
-        FarmSettingsSection:Toggle({type = "toggle", name = "Auto Sell Trash", flag = "SellTrash_TheBronx", default = false, callback = function(state)
-            Config.TheBronx.Farms.AutoSellTrash = state
-        end})
-
-        Column = MiscTab
+    
+        Column = MiscTaB
 
         local DupingSection = Column:Section({name = "Duping Section", size = 0.29, default = false, side = 'right', icon = GetImage("Node.png")}) 
 
@@ -7812,7 +7835,7 @@ do -- \\ Main Page
     end
 
     do -- \\ Money Section
-        local MoneySection = MainPage:Section({Name = "Money", Side = "right"})
+        local MoneySection = MainPage:Section({Name = "Vulnerability", Side = "right"})
 
         MoneySection:Toggle({
             Name = "Auto Farm Garbage",
